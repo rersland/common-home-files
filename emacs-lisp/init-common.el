@@ -15,14 +15,14 @@
 (require 'window-numbering)
 (window-numbering-mode t)
 
-;; save file backups under ~/emacs/backups
-(setq backup-directory-alist '(("." . "~/emacs/backups")))
+;; save file backups under ~/.emacs.d/backups
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 ;; redefine make-auto-save-file-name so auto-save files will always be saved
-;; under ~/emacs/autosaves
+;; under ~/.emacs.d/autosaves
 (defun make-auto-save-file-name ()
   (let ((file-name (or buffer-file-name (buffer-name))))
-    (concat "~/emacs/autosaves/"
+    (concat "~/.emacs.d/autosaves/"
             "#"
             (replace-regexp-in-string "/" "!" file-name)
             "#")))
