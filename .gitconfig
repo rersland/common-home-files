@@ -1,0 +1,17 @@
+[user]
+	name = Ryan Ersland
+
+[core]
+	editor = emacs
+
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+	br = branch
+
+[color]
+	ui = auto
+
+[format]
+	pretty = format:%Cblue%ai %Cgreen%an %Cred%h %Creset%s
