@@ -41,6 +41,13 @@
 (line-number-mode t)
 (column-number-mode t)
 
+;; show line numbers in the gutter
+(global-linum-mode)
+
+;; gui mode settings
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(set-scroll-bar-mode 'right)
+
 ;; turn on global whitespace highlighting
 (global-whitespace-mode)
 (setq whitespace-style (quote (face tabs spaces trailing indentation space-mark tab-mark)))
