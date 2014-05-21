@@ -58,7 +58,7 @@
 (color-theme-ryan-dark-1)
 
 ;; ============================================================================
-;; utility funcitons
+;; utility functions
 ;; ============================================================================
 
 ;; what face is being used at the current point?
@@ -77,14 +77,25 @@
   )
 
 ;; ============================================================================
+;; general editing settings
+;; ============================================================================
+
+;; indent with spaces only
+(setq-default indent-tabs-mode nil)
+
+;; display tab characters as 4 spaces wide
+(setq-default tab-width 4)
+
+;; wrap long lines at 89 characters
+(setq-default fill-column 89)
+
+
+;; ============================================================================
 ;; major modes
 ;; ============================================================================
 
 (require 'cperl-mode)
 (defalias 'perl-mode 'cperl-mode)
-
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
 
 ;; ============================================================================
 ;; key bindings
@@ -106,6 +117,8 @@
 (global-set-key [f8] 'recompile)
 (global-set-key (kbd "ESC <prior>") (kbd "C-u 3 <prior>"))
 (global-set-key (kbd "ESC <next>") (kbd "C-u 3 <next>"))
+(global-set-key (kbd "M-<prior>") (kbd "C-u 3 <prior>"))
+(global-set-key (kbd "M-<next>") (kbd "C-u 3 <next>"))
 (global-set-key (kbd "C-x C-l") 'goto-line)
 (global-set-key (kbd "C-x C-p") 'other-window)
 (global-set-key (kbd "C-x p") 'other-window)
