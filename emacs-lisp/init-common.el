@@ -46,11 +46,12 @@
 
 ;; gui mode settings
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(setq inhibit-splash-screen t)
 (set-scroll-bar-mode 'right)
 
 ;; turn on global whitespace highlighting
-(global-whitespace-mode)
-(setq whitespace-style (quote (face tabs spaces trailing indentation space-mark tab-mark)))
+;(global-whitespace-mode)
+(setq-default whitespace-style (quote (face tabs spaces trailing indentation space-mark tab-mark)))
 
 ;; install my personal color theme
 (require 'color-theme)
@@ -61,20 +62,32 @@
 ;; utility functions
 ;; ============================================================================
 
-;; what face is being used at the current point?
+;; from http://stackoverflow.com/questions/1242352/get-font-face-under-cursor-in-emacs
 (defun what-face (pos)
+  "show the name of the face displayed under the current point"
   (interactive "d")
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "no face"))))
 
-;; reduce buffer clutter by killing buffers I probably don't need to persist
 (defun kill-starred-buffers ()
+  "reduce buffer clutter by killing buffers I probably don't need to persist"
   (and (get-buffer "*Completions*") (kill-buffer "*Completions*"))
   (and (get-buffer "*Help*") (kill-buffer "*Help*"))
   (and (get-buffer "*Compile-Log*") (kill-buffer "*Compile-Log*"))
   (and (get-buffer "*scratch*") (kill-buffer "*scratch*"))
   )
+
+;; lets me bind a single key to start and stop recording keyboard macros
+;; from http://www.emacswiki.org/emacs/KeyboardMacros
+(defun toggle-kbd-macro-recording-on ()
+  (interactive)
+  (define-key global-map (this-command-keys) 'toggle-kbd-macro-recording-off)
+  (start-kbd-macro nil))
+(defun toggle-kbd-macro-recording-off ()
+  (interactive)
+  (define-key global-map (this-command-keys) 'toggle-kbd-macro-recording-on)
+  (end-kbd-macro))
 
 ;; ============================================================================
 ;; general editing settings
@@ -101,50 +114,32 @@
 ;; key bindings
 ;; ============================================================================
 
-(global-set-key (kbd "ESC <right>") (kbd "M-f"))
-(global-set-key (kbd "ESC <left>") (kbd "M-b"))
-(global-set-key (kbd "ESC <up>") 'backward-paragraph)
-(global-set-key (kbd "ESC <down>") 'forward-paragraph)
-(global-set-key (kbd "ESC <deletechar>") 'kill-word)    ;; ALT-DELETE
-(global-set-key (kbd "ESC [ 1 ~") (kbd "C-a"))          ;; HOME
-(global-set-key (kbd "<select>") (kbd "C-e"))           ;; END
-(global-set-key (kbd "ESC r") 'isearch-backward-regexp)
-(global-set-key (kbd "ESC s") 'isearch-forward-regexp)
-(global-set-key (kbd "ESC C-s") 'query-replace-regexp)
-(global-set-key [f5] 'call-last-kbd-macro)
-(global-set-key [f6] 'start-kbd-macro)
-(global-set-key [f7] 'end-kbd-macro)
-(global-set-key [f8] 'recompile)
-(global-set-key (kbd "ESC <prior>") (kbd "C-u 3 <prior>"))
-(global-set-key (kbd "ESC <next>") (kbd "C-u 3 <next>"))
+;; navigation
+(global-set-key (kbd "M-<right>") (kbd "M-f"))
+(global-set-key (kbd "M-<left>") (kbd "M-b"))
+(global-set-key (kbd "M-<up>") 'backward-paragraph)
+(global-set-key (kbd "M-<down>") 'forward-paragraph)
+(global-set-key (kbd "M-<delete>") 'kill-word)
 (global-set-key (kbd "M-<prior>") (kbd "C-u 3 <prior>"))
 (global-set-key (kbd "M-<next>") (kbd "C-u 3 <next>"))
-(global-set-key (kbd "C-x C-l") 'goto-line)
-(global-set-key (kbd "C-x C-p") 'other-window)
-(global-set-key (kbd "C-x p") 'other-window)
-(global-set-key (kbd "C-x -") 'split-window-vertically)
-(global-set-key (kbd "C-x |") 'split-window-horizontally)
-
-;; numpad bindings
-(global-set-key "\eOp" "0")
-(global-set-key "\eOq" "1")
-(global-set-key "\eOr" "2")
-(global-set-key "\eOs" "3")
-(global-set-key "\eOt" "4")
-(global-set-key "\eOu" "5")
-(global-set-key "\eOv" "6")
-(global-set-key "\eOw" "7")
-(global-set-key "\eOx" "8")
-(global-set-key "\eOy" "9")
-(global-set-key "\eOl" "+")
-(global-set-key "\eOQ" "/")
-(global-set-key "\eOR" "*")
-(global-set-key "\eOS" "-")
-(global-set-key "\eOn" ".")
-
-;; buffer switching commands - defined in prev-next-buffer.el
 (global-set-key (kbd "C-x <left>") 'previous-buffer)
 (global-set-key (kbd "C-x <right>") 'next-buffer)
+(global-set-key (kbd "C-x C-l") 'goto-line)
+
+;; split windows
+(global-set-key (kbd "C-x -") 'split-window-vertically)
+(global-set-key (kbd "C-x |") 'split-window-horizontally)
+(global-set-key (kbd "C-x C-p") 'other-window)
+(global-set-key (kbd "C-x p") 'other-window)
+
+;; search/replace
+(global-set-key (kbd "M-r") 'isearch-backward-regexp)
+(global-set-key (kbd "M-s") 'isearch-forward-regexp)
+(global-set-key (kbd "M-C-s") 'query-replace-regexp)
+
+;; other
+(global-set-key (kbd "<f5>") 'call-last-kbd-macro)
+(global-set-key (kbd "C-<f5>") 'toggle-kbd-macro-recording-on)
 
 
 
