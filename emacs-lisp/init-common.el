@@ -141,6 +141,7 @@
 (global-set-key (kbd "<f5>") 'call-last-kbd-macro)
 (global-set-key (kbd "C-<f5>") 'toggle-kbd-macro-recording-on)
 
-
-
-
+;; Load PuTTY keymaps if the IN_PUTTY environment variable is set. (I'll have to
+;; configure PuTTY to always set this variable.)
+(if (getenv "IN_PUTTY")
+    (load-library "init-putty"))
