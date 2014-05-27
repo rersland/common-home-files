@@ -53,9 +53,7 @@
 ;; modes.
 (setq-default whitespace-style (quote (face tabs spaces trailing indentation space-mark tab-mark)))
 (let ((turn-on-local-whitespace-mode (lambda () (whitespace-mode t)))
-      (list-of-hooks '(cperl-mode-hook
-                       c-mode-hook
-                       emacs-lisp-mode-hook)))
+      (list-of-hooks '(prog-mode-hook cperl-mode-hook)))
   (while list-of-hooks
     (add-hook (pop list-of-hooks) turn-on-local-whitespace-mode)))
 
@@ -108,6 +106,8 @@
 ;; wrap long lines at 89 characters
 (setq-default fill-column 89)
 
+;; default across various modes: indent in steps of 4 spaces
+(setq-default c-basic-offset 4)
 
 ;; ============================================================================
 ;; major modes
