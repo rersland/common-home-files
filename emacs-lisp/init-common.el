@@ -42,7 +42,7 @@
 (column-number-mode t)
 
 ;; show line numbers in the gutter
-(global-linum-mode)
+;(global-linum-mode)
 
 ;; gui mode settings
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -140,6 +140,7 @@
 ;; other
 (global-set-key (kbd "<f5>") 'call-last-kbd-macro)
 (global-set-key (kbd "C-<f5>") 'toggle-kbd-macro-recording-on)
+(global-set-key (kbd "<f6>") 'whitespace-mode)
 
 ;; Load PuTTY keymaps if the IN_PUTTY environment variable is set. (I'll have to
 ;; configure PuTTY to always set this variable.)
