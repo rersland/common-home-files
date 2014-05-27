@@ -49,9 +49,15 @@
 (setq inhibit-splash-screen t)
 (set-scroll-bar-mode 'right)
 
-;; turn on global whitespace highlighting
-;(global-whitespace-mode)
+;; Configure whitespace highlighting and turn it on locally in various programming major
+;; modes.
 (setq-default whitespace-style (quote (face tabs spaces trailing indentation space-mark tab-mark)))
+(let ((turn-on-local-whitespace-mode (lambda () (whitespace-mode t)))
+      (list-of-hooks '(cperl-mode-hook
+                       c-mode-hook
+                       emacs-lisp-mode-hook)))
+  (while list-of-hooks
+    (add-hook (pop list-of-hooks) turn-on-local-whitespace-mode)))
 
 ;; install my personal color theme
 (require 'color-theme)
