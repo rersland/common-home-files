@@ -42,20 +42,28 @@
 (column-number-mode t)
 
 ;; show line numbers in the gutter
-;(global-linum-mode)
+(global-linum-mode)
+
+;; add a one-column space between the line numbers to the left and the test to the right
+(defun linum-format-func (line)
+  (let ((gutter-width (length (number-to-string (count-lines (point-min) (point-max))))))
+    (propertize (format (format "%%%dd " gutter-width) line) 'face 'linum)))
+(setq linum-format 'linum-format-func)
 
 ;; gui mode settings
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (setq inhibit-splash-screen t)
 (set-scroll-bar-mode 'right)
 
-;; Configure whitespace highlighting and turn it on locally in various programming major
-;; modes.
+;; configure whitespace highlighting
 (setq-default whitespace-style (quote (face tabs spaces trailing indentation space-mark tab-mark)))
-(let ((turn-on-local-whitespace-mode (lambda () (whitespace-mode t)))
-      (list-of-hooks '(prog-mode-hook cperl-mode-hook)))
-  (while list-of-hooks
-    (add-hook (pop list-of-hooks) turn-on-local-whitespace-mode)))
+
+;; This adds a hook to several programming major modes to automatically turn on
+;; whitespace mode. I feel like leaving it off by default at the moment, though.
+; (let ((turn-on-local-whitespace-mode (lambda () (whitespace-mode t)))
+;       (list-of-hooks '(prog-mode-hook cperl-mode-hook)))
+;   (while list-of-hooks
+;     (add-hook (pop list-of-hooks) turn-on-local-whitespace-mode)))
 
 ;; install my personal color theme
 (require 'color-theme)
@@ -147,6 +155,7 @@
 (global-set-key (kbd "<f5>") 'call-last-kbd-macro)
 (global-set-key (kbd "C-<f5>") 'toggle-kbd-macro-recording-on)
 (global-set-key (kbd "<f6>") 'whitespace-mode)
+(global-set-key (kbd "<f7>") 'linum-mode)
 
 ;; Load PuTTY keymaps if the IN_PUTTY environment variable is set. (I'll have to
 ;; configure PuTTY to always set this variable.)

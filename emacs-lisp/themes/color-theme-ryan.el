@@ -58,6 +58,7 @@
      (whitespace-trailing ((t (:foreground "#00ffff" :background "gray7" :underline t))))
 
      (ispell-face ((t (:bold t :background "#FFB774" :foreground "#92E683"))))
+     (linum ((t (:foreground "gray30"))))
      (menu ((t (:background "gray20" :foreground "navajo white"))))
      (modeline ((t (:background "gray20" :foreground "LightGray"))))
      (modeline-mousable ((t (:background "light goldenrod" :foreground "dim gray"))))
