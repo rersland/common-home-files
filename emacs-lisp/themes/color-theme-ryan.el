@@ -57,6 +57,8 @@
      (whitespace-newline ((t (:foreground "gray20" :background "gray7"))))
      (whitespace-trailing ((t (:foreground "#00ffff" :background "gray7" :underline t))))
 
+     (org-hide ((t (:foreground "color-239"))))
+
      (ispell-face ((t (:bold t :background "#FFB774" :foreground "#92E683"))))
      (linum ((t (:foreground "gray30"))))
      (menu ((t (:background "gray20" :foreground "navajo white"))))

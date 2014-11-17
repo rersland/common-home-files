@@ -44,7 +44,7 @@
 ;; show line numbers in the gutter
 (global-linum-mode)
 
-;; add a one-column space between the line numbers to the left and the test to the right
+;; add a one-column space between the line numbers to the left and the text to the right
 (defun linum-format-func (line)
   (let ((gutter-width (length (number-to-string (count-lines (point-min) (point-max))))))
     (propertize (format (format "%%%dd " gutter-width) line) 'face 'linum)))
@@ -157,7 +157,11 @@
 (global-set-key (kbd "<f6>") 'whitespace-mode)
 (global-set-key (kbd "<f7>") 'linum-mode)
 
+(define-prefix-command 'v-prefix)
+(global-set-key (kbd "C-v") 'v-prefix)
+(global-set-key (kbd "C-v C-<left>") (kbd "S-<left>"))
+
 ;; Load PuTTY keymaps if the IN_PUTTY environment variable is set. (I'll have to
 ;; configure PuTTY to always set this variable.)
-(if (getenv "IN_PUTTY")
+(if (getenv "SSH_TTY")
     (load-library "init-putty"))
