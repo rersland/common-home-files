@@ -1,0 +1,3 @@
+[submodule "thirdparty/less-css-mode"]
+	path = thirdparty/less-css-mode
+	url = https://github.com/purcell/less-css-mode.git

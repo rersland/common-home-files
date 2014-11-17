@@ -124,6 +124,9 @@
 (require 'cperl-mode)
 (defalias 'perl-mode 'cperl-mode)
 
+;; major mode for LESS files
+(require 'less-css-mode)
+
 ;; ============================================================================
 ;; key bindings
 ;; ============================================================================
