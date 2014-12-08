@@ -33,6 +33,8 @@
 ;; define previous-buffer and next-buffer functions for buffer navigation
 (require 'prev-next-buffer)
 
+(load-library "init-org-mode")
+
 ;; ============================================================================
 ;; style
 ;; ============================================================================
@@ -153,6 +155,23 @@
 (global-set-key (kbd "M-r") 'isearch-backward-regexp)
 (global-set-key (kbd "M-s") 'isearch-forward-regexp)
 (global-set-key (kbd "M-C-s") 'query-replace-regexp)
+
+;; org-mode
+;(eval-after-load 'org-mode '(define-key ...
+
+; org-shift[up/down/left/right]             C-c <udlr> (default)
+; org-meta[up/down/left/right]              C-v <udlr>
+; outline-[next/previous]-visible-heading   
+; org-[forward/backward]-same-level         M-<ud>
+; outline-up-heading                        C-c C-u (default)
+; [forward/backward]-word                   M-<lr>
+; [forward/backward]-paragraph              ---
+
+; M-<udlr>
+; C-c <udlr>
+; C-v <udlr>
+
+
 
 ;; other
 (global-set-key (kbd "<f5>") 'call-last-kbd-macro)
