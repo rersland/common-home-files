@@ -28,7 +28,7 @@
             "#")))
 
 ;; ido - improved interactivity for buffer switching and such
-(require 'ido)
+(ido-mode t)
 
 ;; define previous-buffer and next-buffer functions for buffer navigation
 (require 'prev-next-buffer)
