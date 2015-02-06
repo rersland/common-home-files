@@ -183,7 +183,6 @@
 (global-set-key (kbd "C-v") 'v-prefix)
 (global-set-key (kbd "C-v C-<left>") (kbd "S-<left>"))
 
-;; Load PuTTY keymaps if the IN_PUTTY environment variable is set. (I'll have to
-;; configure PuTTY to always set this variable.)
+;; If we're running in PuTTY, load PuTTY-specific keymaps.
 (if (getenv "SSH_TTY")
     (load-library "init-putty"))
