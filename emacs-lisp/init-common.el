@@ -103,6 +103,14 @@
   (define-key global-map (this-command-keys) 'toggle-kbd-macro-recording-on)
   (end-kbd-macro))
 
+;; rigidly indent or unindent an entire region by one tab
+(defun indent-rigidly-one-tab ()
+  (interactive)
+  (indent-rigidly (region-beginning) (region-end) tab-width))
+(defun unindent-rigidly-one-tab ()
+  (interactive)
+  (indent-rigidly (region-beginning) (region-end) (* -1 tab-width)))
+
 ;; ============================================================================
 ;; general editing settings
 ;; ============================================================================
@@ -182,6 +190,8 @@
 (define-prefix-command 'v-prefix)
 (global-set-key (kbd "C-v") 'v-prefix)
 (global-set-key (kbd "C-v C-<left>") (kbd "S-<left>"))
+(global-set-key (kbd "C-v ]") 'indent-rigidly-one-tab)
+(global-set-key (kbd "C-v [") 'unindent-rigidly-one-tab)
 
 ;; If we're running in PuTTY, load PuTTY-specific keymaps.
 (if (getenv "SSH_TTY")
