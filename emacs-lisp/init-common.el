@@ -33,6 +33,9 @@
 ;; define previous-buffer and next-buffer functions for buffer navigation
 (require 'prev-next-buffer)
 
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
 (load-library "init-org-mode")
 
 ;; ============================================================================
@@ -47,9 +50,12 @@
 (global-linum-mode)
 
 ;; add a one-column space between the line numbers to the left and the text to the right
+;; (defun linum-format-func (line)
+;;   (let ((gutter-width (length (number-to-string (count-lines (point-min) (point-max))))))
+;;     (propertize (format (format "%%%dd " gutter-width) line) 'face 'linum)))
 (defun linum-format-func (line)
-  (let ((gutter-width (length (number-to-string (count-lines (point-min) (point-max))))))
-    (propertize (format (format "%%%dd " gutter-width) line) 'face 'linum)))
+  ;; (propertize (format (format "%%%dd" (% (line-number-at-pos (point)) 10) ) line) 'face 'linum))
+  (propertize (format "%4d " line) 'face 'linum))
 (setq linum-format 'linum-format-func)
 
 ;; gui mode settings
