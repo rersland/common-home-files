@@ -33,6 +33,9 @@
 ;; define previous-buffer and next-buffer functions for buffer navigation
 (require 'prev-next-buffer)
 
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
 (load-library "init-org-mode")
 
 ;; ============================================================================
