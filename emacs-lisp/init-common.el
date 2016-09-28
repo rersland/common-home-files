@@ -2,6 +2,11 @@
 ;; general emacs behavior and functionality
 ;; ============================================================================
 
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
 ;; use fonts
 (global-font-lock-mode t)
 
