@@ -24,21 +24,29 @@ $_ = abs_path $_ for ($homedir, $repodir);
 
 sub step_mkdir {
   my ($path) = @_;
-  say "make path: $path";
-  mkdir $path or die $!;
+  if (-d $path) {
+    say "$path already exists";
+  } else {
+    mkdir $path or die "mkdir $path: $!";
+    say "make path: $path";
+  }
 }
 sub step_symlink {
   my ($target, $link) = @_;
-  say "symlink: $link -> $target";
-  symlink $target, $link or die $!;
+  if (-f $link) {
+    say "$link already exists";
+  } else {
+    symlink $target, $link or die "symlink $target, $link: $!";
+    say "symlink: $link -> $target";
+  }
 }
 sub step_make_dot_emacs {
   my $path = "$homedir/.emacs";
   die "$path already exists!" if -f $path;
+  open my $f, '>', $path or die "open $path: $!";
+  print {$f} $dot_emacs_contents;
   say "create file $path:";
   print $dot_emacs_contents =~ s/^/ > /mgr;
-  open my $f, '>', $path or die $!;
-  print {$f} $dot_emacs_contents;
 }
 
 say "";
