@@ -36,6 +36,8 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+(electric-indent-mode -1)
+
 (load-library "init-org-mode")
 
 ;; ============================================================================
