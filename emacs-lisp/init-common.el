@@ -124,6 +124,14 @@
   (interactive)
   (indent-rigidly (region-beginning) (region-end) (* -1 tab-width)))
 
+(defun open-empty-buffer ()
+  (interactive)
+  (let ((b (generate-new-buffer "untitled")))
+    (switch-to-buffer b)
+    (funcall text-mode)
+    (setq buffer-offer-save t)
+    b))
+
 ;; ============================================================================
 ;; general editing settings
 ;; ============================================================================
@@ -205,6 +213,7 @@
 (global-set-key (kbd "C-v C-<left>") (kbd "S-<left>"))
 (global-set-key (kbd "C-v ]") 'indent-rigidly-one-tab)
 (global-set-key (kbd "C-v [") 'unindent-rigidly-one-tab)
+(global-set-key (kbd "C-v n") 'open-empty-buffer)
 
 ;; If we're running in PuTTY, load PuTTY-specific keymaps.
 (if (getenv "SSH_TTY")
