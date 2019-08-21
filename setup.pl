@@ -10,9 +10,13 @@ use File::Path qw(make_path);
 use Getopt::Long;
 
 my $dot_emacs_contents = qq{
+(package-initialize)
+
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (load-library "init-common")
-(load-library "init-putty")
+;;(load-library "init-athena")
+;;(load-library "init-putty")
+;;(load-library "init-wsl")
 } =~ s/^  //mgr =~ s/^\s+//gr;
 
 GetOptions(
