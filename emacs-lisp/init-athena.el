@@ -17,11 +17,6 @@
                 ("\\.whiskers$" . mustache-mode))
               auto-mode-alist))
 
-;; multi-mode setting for .esp pages
-;; (require 'mmm-mode)
-;; (setq mmm-global-mode 'maybe)
-;; (mmm-add-mode-ext-class 'html-mode nil 'mason)
-
 (defun setup-athena-formatting ()
   (setq c-basic-offset 4
         cperl-close-paren-offset -4
